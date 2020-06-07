@@ -4,3 +4,8 @@ tmp/
 .metadata
 .classpath
 .project
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws

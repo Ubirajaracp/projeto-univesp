@@ -1,18 +1,6 @@
 package view;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.JPanel;
-import java.awt.Button;
-import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import java.awt.Choice;
-import javax.swing.JCheckBox;
-import javax.swing.JTextField;
-import javax.swing.JSeparator;
+import javax.swing.*;
 
 public class ForceCalculator implements View {
 
