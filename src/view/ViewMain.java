@@ -1,14 +1,10 @@
 package view;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-
-public class ViewMain implements ActionListener {
+public class ViewMain {
 
 	private JFrame mainMenu;
 	private JButton btnForce, btnAcceleration, btnAngularFrequency, btnShmFrequency, btnPeriod, btnAmplitude, btnEnergy;
@@ -49,66 +45,52 @@ public class ViewMain implements ActionListener {
 		btnForce = new JButton("Cálculo da Força");
 		btnForce.setBounds(24, 83, 200, 25);
 		mainMenu.getContentPane().add(btnForce);
-		btnForce.addActionListener(this);
+		btnForce.addActionListener(e -> { createCalculatorWindow("view.ForceCalculator"); });
 		
 		btnAcceleration = new JButton("Cálculo da Aceleração");
 		btnAcceleration.setBounds(263, 83, 200, 25);
 		mainMenu.getContentPane().add(btnAcceleration);
-		btnAcceleration.addActionListener(this);
+		btnAcceleration.addActionListener(e -> { createCalculatorWindow("view.AccelerationCalculator"); });
 		
 		btnAngularFrequency = new JButton("Frequência Angular");
 		btnAngularFrequency.setBounds(263, 148, 200, 25);
 		mainMenu.getContentPane().add(btnAngularFrequency);
-		btnAngularFrequency.addActionListener(this);
+		btnAngularFrequency.addActionListener(e -> { createCalculatorWindow("view.AngularFrequencyCalculator"); });
 		
 		btnShmFrequency = new JButton("Frequência para MHS");
 		btnShmFrequency.setBounds(24, 148, 200, 25);
 		mainMenu.getContentPane().add(btnShmFrequency);
-		btnShmFrequency.addActionListener(this);
+		btnShmFrequency.addActionListener(e -> { createCalculatorWindow("view.ShmFrequencyCalculator"); });
 		
 		btnPeriod = new JButton("Período");
 		btnPeriod.setBounds(24, 221, 150, 25);
 		mainMenu.getContentPane().add(btnPeriod);
-		btnPeriod.addActionListener(this);
+		btnPeriod.addActionListener(e -> { createCalculatorWindow("view.PeriodCalculator"); });
 		
 		btnAmplitude = new JButton("Amplitude");
 		btnAmplitude.setBounds(263, 221, 150, 25);
 		mainMenu.getContentPane().add(btnAmplitude);
-		btnAmplitude.addActionListener(this);
+		btnAmplitude.addActionListener(e -> { createCalculatorWindow("view.AmplitudeCalculator"); });
 		
 		btnEnergy = new JButton("Energia");
 		btnEnergy.setBounds(24, 289, 117, 25);
 		mainMenu.getContentPane().add(btnEnergy);
-		btnEnergy.addActionListener(this);
+		btnEnergy.addActionListener(e -> { createCalculatorWindow("view.EnergyCalculator"); });
 		
 		JLabel lblNewLabel = new JLabel("Selecione uma opção");
 		lblNewLabel.setBounds(151, 31, 217, 15);
 		mainMenu.getContentPane().add(lblNewLabel);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		View view = null;
-		
-		if (e.getSource() == btnForce) {
-			view = new ForceCalculator();
-		} else if (e.getSource() == btnAcceleration) {
-			view = new AccelerationCalculator();
-		} else if (e.getSource() == btnAngularFrequency) {
-			view = new AngularFrequencyCalculator();
-		} else if (e.getSource() == btnShmFrequency) {
-			view = new ShmFrequencyCalculator();
-		} else if (e.getSource() == btnPeriod) {
-			view = new PeriodCalculator();
-		} else if (e.getSource() == btnAmplitude) {
-			view = new AmplitudeCalculator();
-		} else if (e.getSource() == btnEnergy) {
-			view = new EnergyCalculator();
-		}
-		
-		view.run();
-		mainMenu.dispose();
-	}
+	private void createCalculatorWindow(String windowClassName) {
+		try {
+			Class<View> c = (Class<View>) Class.forName(windowClassName);
+			View view = c.getDeclaredConstructor().newInstance();
 
+			view.run();
+			mainMenu.dispose();
+		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }
