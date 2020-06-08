@@ -4,25 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 
-public class ViewMain {
+public class ViewMain implements View {
 
 	private JFrame mainMenu;
 	private JButton btnForce, btnAcceleration, btnAngularFrequency, btnShmFrequency, btnPeriod, btnAmplitude, btnEnergy;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ViewMain window = new ViewMain();
-					window.mainMenu.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+	public void run() {
+		try {
+			ViewMain window = new ViewMain();
+			window.mainMenu.setVisible(true);
+			window.mainMenu.setLocationRelativeTo(null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
