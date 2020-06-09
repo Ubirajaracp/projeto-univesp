@@ -2,17 +2,16 @@ package view;
 
 import javax.swing.*;
 
+import model.Force;
+
 public class ForceCalculator implements View {
 
 	private JFrame calculator;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JButton btnPrevious;
+	private JTextField springConstantField;
+	private JTextField displacementField;
+	private JTextField forceField;
+	private JButton btnCalculate, btnPrevious;
 
-	/**
-	 * Launch the application.
-	 */
 	public void run() {
 		try {
 			ForceCalculator window = new ForceCalculator();
@@ -23,16 +22,10 @@ public class ForceCalculator implements View {
 		}
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public ForceCalculator() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		calculator = new JFrame();
 		calculator.setTitle("Cálculo da Força");
@@ -40,9 +33,10 @@ public class ForceCalculator implements View {
 		calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		calculator.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Calcular");
-		btnNewButton.setBounds(251, 235, 117, 25);
-		calculator.getContentPane().add(btnNewButton);
+		btnCalculate = new JButton("Calcular");
+		btnCalculate.setBounds(251, 235, 117, 25);
+		calculator.getContentPane().add(btnCalculate);
+		btnCalculate.addActionListener(e -> { calculate(); });
 		
 		btnPrevious = new JButton("Voltar");
 		btnPrevious.setBounds(100, 235, 117, 25);
@@ -57,21 +51,21 @@ public class ForceCalculator implements View {
 		lblNewLabel_1.setBounds(31, 102, 253, 15);
 		calculator.getContentPane().add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(327, 49, 114, 19);
-		calculator.getContentPane().add(textField);
-		textField.setColumns(10);
+		springConstantField = new JTextField();
+		springConstantField.setBounds(327, 49, 114, 19);
+		calculator.getContentPane().add(springConstantField);
+		springConstantField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(327, 100, 114, 19);
-		calculator.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		displacementField = new JTextField();
+		displacementField.setBounds(327, 100, 114, 19);
+		calculator.getContentPane().add(displacementField);
+		displacementField.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
-		textField_2.setBounds(327, 173, 114, 19);
-		calculator.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		forceField = new JTextField();
+		forceField.setEnabled(false);
+		forceField.setBounds(327, 173, 114, 19);
+		calculator.getContentPane().add(forceField);
+		forceField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Força restauradora:");
 		lblNewLabel_2.setBounds(31, 175, 169, 15);
@@ -87,5 +81,15 @@ public class ForceCalculator implements View {
 		viewMain.run();
 		
 		calculator.dispose();
+	}
+	
+	private void calculate() {
+		Force force = new Force();
+		
+		Double springConstant = Double.parseDouble(springConstantField.getText());
+		Double displacement = Double.parseDouble(displacementField.getText());
+		
+		String result = String.valueOf(force.calculate(springConstant, displacement));
+		forceField.setText(result);
 	}
 }

@@ -2,17 +2,17 @@ package view;
 
 import javax.swing.*;
 
+import model.Period;
+
 public class PeriodCalculator implements View {
 
 	private JFrame calculator;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JButton btnPrevious;
+	private JTextField springConstantField;
+	private JTextField massField;
+	private JTextField periodField;
+	private JButton btnCalculate, btnPrevious;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public void run() {
 		try {
 			PeriodCalculator window = new PeriodCalculator();
@@ -23,16 +23,10 @@ public class PeriodCalculator implements View {
 		}
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public PeriodCalculator() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		calculator = new JFrame();
 		calculator.setTitle("Período");
@@ -40,9 +34,10 @@ public class PeriodCalculator implements View {
 		calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		calculator.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Calcular");
-		btnNewButton.setBounds(251, 235, 117, 25);
-		calculator.getContentPane().add(btnNewButton);
+		btnCalculate = new JButton("Calcular");
+		btnCalculate.setBounds(251, 235, 117, 25);
+		calculator.getContentPane().add(btnCalculate);
+		btnCalculate.addActionListener(e -> { calculate(); });
 		
 		btnPrevious = new JButton("Voltar");
 		btnPrevious.setBounds(100, 235, 117, 25);
@@ -57,21 +52,21 @@ public class PeriodCalculator implements View {
 		lblNewLabel_1.setBounds(31, 102, 253, 15);
 		calculator.getContentPane().add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(327, 49, 114, 19);
-		calculator.getContentPane().add(textField);
-		textField.setColumns(10);
+		springConstantField = new JTextField();
+		springConstantField.setBounds(327, 49, 114, 19);
+		calculator.getContentPane().add(springConstantField);
+		springConstantField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(327, 100, 114, 19);
-		calculator.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		massField = new JTextField();
+		massField.setBounds(327, 100, 114, 19);
+		calculator.getContentPane().add(massField);
+		massField.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
-		textField_2.setBounds(327, 173, 114, 19);
-		calculator.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		periodField = new JTextField();
+		periodField.setEnabled(false);
+		periodField.setBounds(327, 173, 114, 19);
+		calculator.getContentPane().add(periodField);
+		periodField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Período");
 		lblNewLabel_2.setBounds(31, 175, 169, 15);
@@ -87,5 +82,15 @@ public class PeriodCalculator implements View {
 		viewMain.run();
 		
 		calculator.dispose();
+	}
+	
+	private void calculate() {
+		Period period = new Period();
+		
+		Double springConstant = Double.parseDouble(springConstantField.getText());
+		Double mass = Double.parseDouble(massField.getText());
+		
+		String result = String.valueOf(period.calculate(springConstant, mass));
+		periodField.setText(result);
 	}
 }
