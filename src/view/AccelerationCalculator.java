@@ -97,9 +97,16 @@ public class AccelerationCalculator implements View {
 	}
 	
 	private void calculate() {
-		AccelerationController accelerationController = new AccelerationController();
-		
-		String result = accelerationController.calculate(springConstantField, massField, displacementField);
-		accelerationField.setText(result);
+		try {
+			AccelerationController accelerationController = new AccelerationController();
+			
+			String result = accelerationController.calculate(springConstantField, massField, displacementField);
+			accelerationField.setText(result);
+		} catch (NumberFormatException e) {
+			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira somente valores numéricos.",
+					 "Entrada inválida",JOptionPane.WARNING_MESSAGE);     
+		} catch (IllegalArgumentException e) {
+			 JOptionPane.showMessageDialog(null, e.getMessage(), "Entrada inválida", JOptionPane.WARNING_MESSAGE);     
+		}
 	}
 }

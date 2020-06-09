@@ -2,12 +2,15 @@ package controller;
 
 import javax.swing.JTextField;
 
+import helper.RoundDecimals;
 import model.AmplitudeFormula;
 
-public class AmplitudeController {
+public class AmplitudeController extends Controller {
 
 	public String calculate(JTextField springConstantField, JTextField massField, JTextField displacementField,
 			JTextField degreeField, JTextField timeField) {
+		
+		validateEmptyInput(springConstantField, massField, displacementField, degreeField, timeField);
 		
 		Double springConstant = Double.parseDouble(springConstantField.getText().replace(",", "."));
 		Double mass = Double.parseDouble(massField.getText().replace(",", "."));
@@ -16,8 +19,8 @@ public class AmplitudeController {
 		Double time = Double.parseDouble(timeField.getText().replace(",", "."));
 		
 		AmplitudeFormula amplitudeFormula = new AmplitudeFormula();
-		double result = amplitudeFormula.calculate(springConstant, displacement, mass, degree, time);
+		double result = RoundDecimals.round(amplitudeFormula.calculate(springConstant, displacement, mass, degree, time), 3);
 		
-		return String.valueOf(result);
+		return String.valueOf(result).replace(".", ",");
 	}
 }

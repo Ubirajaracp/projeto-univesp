@@ -87,9 +87,16 @@ public class ShmFrequencyCalculator implements View {
 	}
 	
 	private void calculate() {
-		ShmFrequencyController shmFrequencyController = new ShmFrequencyController();
-		String result = shmFrequencyController.calculate(springConstantField, massField);
-
-		shmFrequencyField.setText(result);
+		try {
+			ShmFrequencyController shmFrequencyController = new ShmFrequencyController();
+			String result = shmFrequencyController.calculate(springConstantField, massField);
+	
+			shmFrequencyField.setText(result);
+		} catch (NumberFormatException e) {
+			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira somente valores numéricos.",
+					 "Entrada inválida",JOptionPane.WARNING_MESSAGE);     
+		} catch (IllegalArgumentException e) {
+			 JOptionPane.showMessageDialog(null, e.getMessage(), "Entrada inválida", JOptionPane.WARNING_MESSAGE);     
+		}
 	}
 }

@@ -125,9 +125,16 @@ public class AmplitudeCalculator implements View {
 	}
 	
 	private void calculate() {
-		AmplitudeController amplitudeController = new AmplitudeController();
-		String result = amplitudeController.calculate(springConstantField, massField, displacementField, degreeField, timeField);
-		
-		amplitudeField.setText(result);
+		try {
+			AmplitudeController amplitudeController = new AmplitudeController();
+			String result = amplitudeController.calculate(springConstantField, massField, displacementField, degreeField, timeField);
+			
+			amplitudeField.setText(result);
+		} catch (NumberFormatException e) {
+			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira somente valores numéricos.",
+					 "Entrada inválida",JOptionPane.WARNING_MESSAGE);     
+		} catch (IllegalArgumentException e) {
+			 JOptionPane.showMessageDialog(null, e.getMessage(), "Entrada inválida", JOptionPane.WARNING_MESSAGE);     
+		}
 	}
 }

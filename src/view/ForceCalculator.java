@@ -87,9 +87,16 @@ public class ForceCalculator implements View {
 	}
 	
 	private void calculate() {
-		ForceController forceController = new ForceController();
-		String result = forceController.calculate(springConstantField, displacementField);
-		
-		forceField.setText(result);
+		try {
+			ForceController forceController = new ForceController();
+			String result = forceController.calculate(springConstantField, displacementField);
+			
+			forceField.setText(result);
+		} catch (NumberFormatException e) {
+			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira somente valores numéricos.",
+					 "Entrada inválida",JOptionPane.WARNING_MESSAGE);     
+		} catch (IllegalArgumentException e) {
+			 JOptionPane.showMessageDialog(null, e.getMessage(), "Entrada inválida", JOptionPane.WARNING_MESSAGE);     
+		}
 	}
 }

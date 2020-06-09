@@ -87,9 +87,16 @@ public class EnergyCalculator implements View {
 	}
 	
 	private void calculate() {
-		EnergyController energyController = new EnergyController();
-		String result = energyController.calculate(springConstantField, amplitudeField);
-		
-		energyField.setText(result);
+		try {
+			EnergyController energyController = new EnergyController();
+			String result = energyController.calculate(springConstantField, amplitudeField);
+			
+			energyField.setText(result);
+		} catch (NumberFormatException e) {
+			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira somente valores numéricos.",
+					 "Entrada inválida",JOptionPane.WARNING_MESSAGE);     
+		} catch (IllegalArgumentException e) {
+			 JOptionPane.showMessageDialog(null, e.getMessage(), "Entrada inválida", JOptionPane.WARNING_MESSAGE);     
+		}
 	}
 }

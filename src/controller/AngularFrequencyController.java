@@ -2,19 +2,22 @@ package controller;
 
 import javax.swing.JTextField;
 
+import helper.RoundDecimals;
 import model.AngularFrequencyFormula;
 
-public class AngularFrequencyController {
+public class AngularFrequencyController extends Controller {
 
 	public String calculate(JTextField springConstantField, JTextField massField) {
 		
+		validateEmptyInput(springConstantField, massField);
+
 		Double springConstant = Double.parseDouble(springConstantField.getText().replace(",", "."));
 		Double mass = Double.parseDouble(massField.getText().replace(",", "."));
 		
 		AngularFrequencyFormula angularFrequencyFormula = new AngularFrequencyFormula();
-		double result = angularFrequencyFormula.calculate(springConstant, mass);
+		double result = RoundDecimals.round(angularFrequencyFormula.calculate(springConstant, mass), 3);
 		
-		return String.valueOf(result);
+		return String.valueOf(result).replace(".", ",");
 	}
 	
 }

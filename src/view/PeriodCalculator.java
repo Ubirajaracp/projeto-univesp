@@ -88,9 +88,16 @@ public class PeriodCalculator implements View {
 	}
 	
 	private void calculate() {
-		PeriodController periodController = new PeriodController();
-		String result = periodController.calculate(springConstantField, massField);
-		
-		periodField.setText(result);
+		try {
+			PeriodController periodController = new PeriodController();
+			String result = periodController.calculate(springConstantField, massField);
+			
+			periodField.setText(result);
+		} catch (NumberFormatException e) {
+			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira somente valores numéricos.",
+					 "Entrada inválida",JOptionPane.WARNING_MESSAGE);     
+		} catch (IllegalArgumentException e) {
+			 JOptionPane.showMessageDialog(null, e.getMessage(), "Entrada inválida", JOptionPane.WARNING_MESSAGE);     
+		}
 	}
 }
