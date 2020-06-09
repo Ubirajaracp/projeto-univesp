@@ -5,6 +5,9 @@ import java.lang.reflect.InvocationTargetException;
 
 public class ViewMain implements View {
 
+	private static final int WIDTH = 500;
+	private static final int HEIGHT = 400;
+	
 	private JFrame mainMenu;
 	private JButton btnForce, btnAcceleration, btnAngularFrequency, btnShmFrequency, btnPeriod, btnAmplitude, btnEnergy;
 
@@ -19,23 +22,21 @@ public class ViewMain implements View {
 		}
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public ViewMain() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		mainMenu = new JFrame();
 		mainMenu.setTitle("Movimento Harmônico Simples");
-		mainMenu.setBounds(100, 100, 492, 404);
+		mainMenu.setBounds(100, 100, WIDTH, HEIGHT);
 		mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainMenu.getContentPane().setLayout(null);
-
+		
+		JLabel lblNewLabel = new JLabel("Selecione uma opção");
+		lblNewLabel.setBounds(150, 31, 217, 15);
+		mainMenu.getContentPane().add(lblNewLabel);
+		
 		btnForce = new JButton("Cálculo da Força");
 		btnForce.setBounds(24, 83, 200, 25);
 		mainMenu.getContentPane().add(btnForce);
@@ -70,10 +71,6 @@ public class ViewMain implements View {
 		btnEnergy.setBounds(24, 289, 117, 25);
 		mainMenu.getContentPane().add(btnEnergy);
 		btnEnergy.addActionListener(e -> { createCalculatorWindow("view.EnergyCalculator"); });
-		
-		JLabel lblNewLabel = new JLabel("Selecione uma opção");
-		lblNewLabel.setBounds(151, 31, 217, 15);
-		mainMenu.getContentPane().add(lblNewLabel);
 	}
 
 	private void createCalculatorWindow(String windowClassName) {

@@ -6,6 +6,9 @@ import model.ShmFrequency;
 
 public class ShmFrequencyCalculator implements View {
 
+	private static final int WIDTH = 500;
+	private static final int HEIGHT = 320;
+	
 	private JFrame calculator;
 	private JTextField springConstantField;
 	private JTextField massField;
@@ -29,30 +32,28 @@ public class ShmFrequencyCalculator implements View {
 	private void initialize() {
 		calculator = new JFrame();
 		calculator.setTitle("Cálculo da frequência para o MHS");
-		calculator.setBounds(100, 100, 478, 320);
+		calculator.setBounds(100, 100, WIDTH, HEIGHT);
 		calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		calculator.getContentPane().setLayout(null);
 		
-		btnCalculate = new JButton("Calcular");
-		btnCalculate.setBounds(251, 235, 117, 25);
-		calculator.getContentPane().add(btnCalculate);
-		btnCalculate.addActionListener(e -> { calculate(); });
-		
-		btnPrevious = new JButton("Voltar");
-		btnPrevious.setBounds(100, 235, 117, 25);
-		calculator.getContentPane().add(btnPrevious);
-		btnPrevious.addActionListener(e -> { redirectToMainMenu(); });
-		
 		JLabel lblNewLabel = new JLabel("Valor da constante elástica da mola");
-		lblNewLabel.setBounds(31, 51, 287, 15);
+		lblNewLabel.setBounds(25, 50, 287, 15);
 		calculator.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Valor da massa");
-		lblNewLabel_1.setBounds(31, 102, 253, 15);
+		lblNewLabel_1.setBounds(25, 100, 253, 15);
 		calculator.getContentPane().add(lblNewLabel_1);
 		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(12, 150, 472, 15);
+		calculator.getContentPane().add(separator);
+		
+		JLabel lblNewLabel_2 = new JLabel("Frequência para o MHS");
+		lblNewLabel_2.setBounds(25, 185, 169, 15);
+		calculator.getContentPane().add(lblNewLabel_2);
+		
 		springConstantField = new JTextField();
-		springConstantField.setBounds(327, 49, 114, 19);
+		springConstantField.setBounds(327, 50, 114, 19);
 		calculator.getContentPane().add(springConstantField);
 		springConstantField.setColumns(10);
 		
@@ -63,17 +64,19 @@ public class ShmFrequencyCalculator implements View {
 		
 		shmFrequencyField = new JTextField();
 		shmFrequencyField.setEnabled(false);
-		shmFrequencyField.setBounds(327, 173, 114, 19);
+		shmFrequencyField.setBounds(327, 185, 114, 19);
 		calculator.getContentPane().add(shmFrequencyField);
 		shmFrequencyField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Frequência para o MHS");
-		lblNewLabel_2.setBounds(31, 175, 169, 15);
-		calculator.getContentPane().add(lblNewLabel_2);
+		btnCalculate = new JButton("Calcular");
+		btnCalculate.setBounds(250, HEIGHT-75, 100, 25);
+		calculator.getContentPane().add(btnCalculate);
+		btnCalculate.addActionListener(e -> { calculate(); });
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(31, 147, 415, 15);
-		calculator.getContentPane().add(separator);
+		btnPrevious = new JButton("Voltar");
+		btnPrevious.setBounds(100, HEIGHT-75, 100, 25);
+		calculator.getContentPane().add(btnPrevious);
+		btnPrevious.addActionListener(e -> { redirectToMainMenu(); });
 	}
 	
 	private void redirectToMainMenu() {
