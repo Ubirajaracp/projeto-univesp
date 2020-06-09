@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import model.Acceleration;
+import controller.AccelerationController;
 
 public class AccelerationCalculator implements View {
 
@@ -73,7 +73,7 @@ public class AccelerationCalculator implements View {
 		displacementField.setColumns(10);
 		
 		accelerationField = new JTextField();
-		accelerationField.setEnabled(false);
+		accelerationField.setEditable(false);
 		accelerationField.setBounds(327, 235, 114, 19);
 		calculator.getContentPane().add(accelerationField);
 		accelerationField.setColumns(15);
@@ -97,13 +97,9 @@ public class AccelerationCalculator implements View {
 	}
 	
 	private void calculate() {
-		Acceleration acceleration = new Acceleration();
+		AccelerationController accelerationController = new AccelerationController();
 		
-		Double springConstant = Double.parseDouble(springConstantField.getText());
-		Double mass = Double.parseDouble(massField.getText());
-		Double displacement = Double.parseDouble(displacementField.getText());
-		
-		Double result = acceleration.calculate(springConstant, mass, displacement);
-		accelerationField.setText(String.valueOf(result));
+		String result = accelerationController.calculate(springConstantField, massField, displacementField);
+		accelerationField.setText(result);
 	}
 }

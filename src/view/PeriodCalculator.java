@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import model.Period;
+import controller.PeriodController;
 
 public class PeriodCalculator implements View {
 
@@ -64,7 +64,7 @@ public class PeriodCalculator implements View {
 		massField.setColumns(10);
 		
 		periodField = new JTextField();
-		periodField.setEnabled(false);
+		periodField.setEditable(false);
 		periodField.setBounds(327, 185, 114, 19);
 		calculator.getContentPane().add(periodField);
 		periodField.setColumns(10);
@@ -88,12 +88,9 @@ public class PeriodCalculator implements View {
 	}
 	
 	private void calculate() {
-		Period period = new Period();
+		PeriodController periodController = new PeriodController();
+		String result = periodController.calculate(springConstantField, massField);
 		
-		Double springConstant = Double.parseDouble(springConstantField.getText());
-		Double mass = Double.parseDouble(massField.getText());
-		
-		String result = String.valueOf(period.calculate(springConstant, mass));
 		periodField.setText(result);
 	}
 }

@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import model.Amplitude;
+import controller.AmplitudeController;
 
 public class AmplitudeCalculator implements View {
 
@@ -101,7 +101,7 @@ public class AmplitudeCalculator implements View {
 		timeField.setColumns(10);
 		
 		amplitudeField = new JTextField();
-		amplitudeField.setEnabled(false);
+		amplitudeField.setEditable(false);
 		amplitudeField.setBounds(327, 335, 114, 19);
 		calculator.getContentPane().add(amplitudeField);
 		amplitudeField.setColumns(10);
@@ -125,15 +125,9 @@ public class AmplitudeCalculator implements View {
 	}
 	
 	private void calculate() {
-		Amplitude amplitude = new Amplitude();
+		AmplitudeController amplitudeController = new AmplitudeController();
+		String result = amplitudeController.calculate(springConstantField, massField, displacementField, degreeField, timeField);
 		
-		Double springConstant = Double.parseDouble(springConstantField.getText());
-		Double mass = Double.parseDouble(massField.getText());
-		Double displacement = Double.parseDouble(displacementField.getText());
-		Double degree = Double.parseDouble(degreeField.getText());
-		Double time = Double.parseDouble(timeField.getText());
-		
-		String result = String.valueOf(amplitude.calculate(displacement, springConstant, mass, time, degree));
 		amplitudeField.setText(result);
 	}
 }

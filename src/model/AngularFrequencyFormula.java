@@ -1,9 +1,9 @@
 package model;
 
-public class Period {
-	
+public class AngularFrequencyFormula {
+
 	public double calculate(double springConstant, double mass) {
-		return 2 * Math.PI * Math.sqrt(mass/springConstant);
+		return Math.sqrt(springConstant/mass);
 	}
 	
 }

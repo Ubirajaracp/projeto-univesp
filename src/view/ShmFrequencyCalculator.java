@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import model.ShmFrequency;
+import controller.ShmFrequencyController;
 
 public class ShmFrequencyCalculator implements View {
 
@@ -63,7 +63,7 @@ public class ShmFrequencyCalculator implements View {
 		massField.setColumns(10);
 		
 		shmFrequencyField = new JTextField();
-		shmFrequencyField.setEnabled(false);
+		shmFrequencyField.setEditable(false);
 		shmFrequencyField.setBounds(327, 185, 114, 19);
 		calculator.getContentPane().add(shmFrequencyField);
 		shmFrequencyField.setColumns(10);
@@ -87,12 +87,9 @@ public class ShmFrequencyCalculator implements View {
 	}
 	
 	private void calculate() {
-		ShmFrequency shmFrequency = new ShmFrequency();
-		
-		Double springConstant = Double.parseDouble(springConstantField.getText());
-		Double mass = Double.parseDouble(massField.getText());
-		
-		String result = String.valueOf(shmFrequency.calculate(springConstant, mass));
+		ShmFrequencyController shmFrequencyController = new ShmFrequencyController();
+		String result = shmFrequencyController.calculate(springConstantField, massField);
+
 		shmFrequencyField.setText(result);
 	}
 }

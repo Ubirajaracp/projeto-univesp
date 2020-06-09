@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import model.AngularFrequency;
+import controller.AngularFrequencyController;
 
 public class AngularFrequencyCalculator implements View {
 
@@ -63,7 +63,7 @@ public class AngularFrequencyCalculator implements View {
 		massField.setColumns(10);
 		
 		angularFrequencyField = new JTextField();
-		angularFrequencyField.setEnabled(false);
+		angularFrequencyField.setEditable(false);
 		angularFrequencyField.setBounds(327, 185, 114, 19);
 		calculator.getContentPane().add(angularFrequencyField);
 		angularFrequencyField.setColumns(10);
@@ -87,12 +87,9 @@ public class AngularFrequencyCalculator implements View {
 	}
 	
 	private void calculate() {
-		AngularFrequency angularFrequency = new AngularFrequency();
+		AngularFrequencyController angularFrequencyController = new AngularFrequencyController();
+		String result = angularFrequencyController.calculate(springConstantField, massField);
 		
-		Double springConstant = Double.parseDouble(springConstantField.getText());
-		Double mass = Double.parseDouble(massField.getText());
-		
-		String result = String.valueOf(angularFrequency.calculate(springConstant, mass));
 		angularFrequencyField.setText(result);
 	}
 }

@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import model.Force;
+import controller.ForceController;
 
 public class ForceCalculator implements View {
 
@@ -63,7 +63,7 @@ public class ForceCalculator implements View {
 		displacementField.setColumns(10);
 		
 		forceField = new JTextField();
-		forceField.setEnabled(false);
+		forceField.setEditable(false);
 		forceField.setBounds(327, 185, 114, 19);
 		calculator.getContentPane().add(forceField);
 		forceField.setColumns(10);
@@ -87,12 +87,9 @@ public class ForceCalculator implements View {
 	}
 	
 	private void calculate() {
-		Force force = new Force();
+		ForceController forceController = new ForceController();
+		String result = forceController.calculate(springConstantField, displacementField);
 		
-		Double springConstant = Double.parseDouble(springConstantField.getText());
-		Double displacement = Double.parseDouble(displacementField.getText());
-		
-		String result = String.valueOf(force.calculate(springConstant, displacement));
 		forceField.setText(result);
 	}
 }

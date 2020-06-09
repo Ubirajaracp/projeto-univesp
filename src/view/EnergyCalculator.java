@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import model.Energy;
+import controller.EnergyController;
 
 public class EnergyCalculator implements View {
 
@@ -63,7 +63,7 @@ public class EnergyCalculator implements View {
 		amplitudeField.setColumns(10);
 		
 		energyField = new JTextField();
-		energyField.setEnabled(false);
+		energyField.setEditable(false);
 		energyField.setBounds(327, 185, 114, 19);
 		calculator.getContentPane().add(energyField);
 		energyField.setColumns(10);
@@ -87,12 +87,9 @@ public class EnergyCalculator implements View {
 	}
 	
 	private void calculate() {
-		Energy energy = new Energy();
+		EnergyController energyController = new EnergyController();
+		String result = energyController.calculate(springConstantField, amplitudeField);
 		
-		Double springConstant = Double.parseDouble(springConstantField.getText());
-		Double amplitude = Double.parseDouble(amplitudeField.getText());
-		
-		String result = String.valueOf(energy.calculate(springConstant, amplitude));
 		energyField.setText(result);
 	}
 }
