@@ -8,7 +8,7 @@ public abstract class Controller {
 		
 	    for (JTextField input : args) {
 			if (input.getText().replaceAll("\\s+","").equals("")) {
-			    throw new IllegalArgumentException("Entrada inválida. Por favor, preencha os campos corretamente");
+			    throw new IllegalArgumentException();
 			}
 	    }
 	    

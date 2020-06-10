@@ -42,12 +42,12 @@ public class AmplitudeCalculator implements View {
 	 */
 	private void initialize() {
 		calculator = new JFrame();
-		calculator.setTitle("CÃ¡lculo da Amplitude");
+		calculator.setTitle("Cálculo da Amplitude");
 		calculator.setBounds(100, 100, WIDTH, HEIGHT);
 		calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		calculator.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Valor da constante elÃ¡stica da mola");
+		JLabel lblNewLabel = new JLabel("Valor da constante elástica da mola");
 		lblNewLabel.setBounds(25, 50, 287, 15);
 		calculator.getContentPane().add(lblNewLabel);
 		
@@ -59,7 +59,7 @@ public class AmplitudeCalculator implements View {
 		lblNewLabel_3.setBounds(25, 150, 229, 15);
 		calculator.getContentPane().add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Valor do Ã¢ngulo de fase");
+		JLabel lblNewLabel_4 = new JLabel("Valor do ângulo de fase");
 		lblNewLabel_4.setBounds(25, 200, 229, 15);
 		calculator.getContentPane().add(lblNewLabel_4);
 		
@@ -131,10 +131,11 @@ public class AmplitudeCalculator implements View {
 			
 			amplitudeField.setText(result);
 		} catch (NumberFormatException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada invÃ¡lida. Por favor, insira somente valores numÃ©ricos.",
-					 "Entrada invÃ¡lida",JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira somente valores numéricos.",
+					 "Entrada inválida",JOptionPane.WARNING_MESSAGE);     
 		} catch (IllegalArgumentException e) {
-			 JOptionPane.showMessageDialog(null, e.getMessage(), "Entrada invÃ¡lida", JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, preencha os campos corretamente.",
+					 "Entrada inválida", JOptionPane.WARNING_MESSAGE);     
 		}
 	}
 }

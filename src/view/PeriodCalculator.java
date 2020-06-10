@@ -32,12 +32,12 @@ public class PeriodCalculator implements View {
 
 	private void initialize() {
 		calculator = new JFrame();
-		calculator.setTitle("Per√≠odo");
+		calculator.setTitle("PerÌodo");
 		calculator.setBounds(100, 100, WIDTH, HEIGHT);
 		calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		calculator.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Valor da constante el√°stica da mola");
+		JLabel lblNewLabel = new JLabel("Valor da constante el·stica da mola");
 		lblNewLabel.setBounds(25, 50, 287, 15);
 		calculator.getContentPane().add(lblNewLabel);
 		
@@ -49,7 +49,7 @@ public class PeriodCalculator implements View {
 		separator.setBounds(12, 150, 472, 15);
 		calculator.getContentPane().add(separator);
 		
-		JLabel lblNewLabel_2 = new JLabel("Per√≠odo");
+		JLabel lblNewLabel_2 = new JLabel("PerÌodo");
 		lblNewLabel_2.setBounds(25, 185, 169, 15);
 		calculator.getContentPane().add(lblNewLabel_2);
 		
@@ -94,10 +94,11 @@ public class PeriodCalculator implements View {
 			
 			periodField.setText(result);
 		} catch (NumberFormatException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada inv√°lida. Por favor, insira somente valores num√©ricos.",
-					 "Entrada inv√°lida",JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, "Entrada inv·lida. Por favor, insira somente valores numÈricos.",
+					 "Entrada inv·lida",JOptionPane.WARNING_MESSAGE);     
 		} catch (IllegalArgumentException e) {
-			 JOptionPane.showMessageDialog(null, e.getMessage(), "Entrada inv√°lida", JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, "Entrada inv·lida. Por favor, preencha os campos corretamente.",
+					 "Entrada inv·lida", JOptionPane.WARNING_MESSAGE);     
 		}
 	}
 }
