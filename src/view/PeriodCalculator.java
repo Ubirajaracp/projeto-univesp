@@ -3,17 +3,22 @@ package view;
 import javax.swing.*;
 
 import controller.PeriodController;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 
 public class PeriodCalculator implements View {
 
-	private static final int WIDTH = 500;
+	private static final int WIDTH = 525;
 	private static final int HEIGHT = 320;
 	
 	private JFrame calculator;
 	private JTextField springConstantField;
 	private JTextField massField;
 	private JTextField periodField;
-	private JButton btnCalculate, btnPrevious;
+	private JButton btnPrevious, btnCalculate, btnClearFields, btnCopyClipboard;
+	private JLabel clipboardMsg;
 
 	
 	public void run() {
@@ -32,26 +37,34 @@ public class PeriodCalculator implements View {
 
 	private void initialize() {
 		calculator = new JFrame();
-		calculator.setTitle("Período");
+		calculator.getContentPane().setBackground(Color.WHITE);
+		calculator.setTitle("Perï¿½odo");
 		calculator.setBounds(100, 100, WIDTH, HEIGHT);
 		calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		calculator.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Valor da constante elástica da mola");
-		lblNewLabel.setBounds(25, 50, 287, 15);
-		calculator.getContentPane().add(lblNewLabel);
+		JLabel springConstantLabel = new JLabel("Valor da constante elï¿½stica da mola");
+		springConstantLabel.setBounds(25, 50, 287, 15);
+		calculator.getContentPane().add(springConstantLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Valor da massa");
-		lblNewLabel_1.setBounds(25, 100, 253, 15);
-		calculator.getContentPane().add(lblNewLabel_1);
+		JLabel massLabel = new JLabel("Valor da massa");
+		massLabel.setBounds(25, 100, 253, 15);
+		calculator.getContentPane().add(massLabel);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(12, 150, 472, 15);
+		separator.setBounds(12, 150, 497, 15);
 		calculator.getContentPane().add(separator);
 		
-		JLabel lblNewLabel_2 = new JLabel("Período");
-		lblNewLabel_2.setBounds(25, 185, 169, 15);
-		calculator.getContentPane().add(lblNewLabel_2);
+		JLabel periodLabel = new JLabel("Perï¿½odo");
+		periodLabel.setBounds(25, 185, 169, 15);
+		calculator.getContentPane().add(periodLabel);
+		
+		clipboardMsg = new JLabel("Copiado para a Ã¡rea de transferÃªncia");
+		clipboardMsg.setFont(new Font("Dialog", Font.ITALIC, 12));
+		clipboardMsg.setBackground(UIManager.getColor("Button.background"));
+		clipboardMsg.setBounds(145, HEIGHT-100, 236, 15);
+		clipboardMsg.setVisible(false);
+		calculator.getContentPane().add(clipboardMsg);
 		
 		springConstantField = new JTextField();
 		springConstantField.setBounds(327, 50, 114, 19);
@@ -69,36 +82,64 @@ public class PeriodCalculator implements View {
 		calculator.getContentPane().add(periodField);
 		periodField.setColumns(10);
 		
-		btnCalculate = new JButton("Calcular");
-		btnCalculate.setBounds(250, HEIGHT-75, 100, 25);
-		calculator.getContentPane().add(btnCalculate);
-		btnCalculate.addActionListener(e -> { calculate(); });
-		
 		btnPrevious = new JButton("Voltar");
-		btnPrevious.setBounds(100, HEIGHT-75, 100, 25);
+		btnPrevious.setBounds(WIDTH-500, HEIGHT-75, 100, 25);
 		calculator.getContentPane().add(btnPrevious);
 		btnPrevious.addActionListener(e -> { redirectToMainMenu(); });
+		
+		btnClearFields = new JButton("Limpar");
+		btnClearFields.setBounds(WIDTH-375, HEIGHT-75, 100, 25);
+		calculator.getContentPane().add(btnClearFields);
+		btnClearFields.addActionListener(e -> { clearFields(); });
+		
+		btnCopyClipboard = new JButton("Copiar");
+		btnCopyClipboard.setBounds(WIDTH-250, HEIGHT-75, 100, 25);
+		calculator.getContentPane().add(btnCopyClipboard);
+		btnCopyClipboard.addActionListener(e -> { copyToClipboard(); });
+		
+		btnCalculate = new JButton("Calcular");
+		btnCalculate.setBounds(WIDTH-125, HEIGHT-75, 100, 25);
+		calculator.getContentPane().add(btnCalculate);
+		btnCalculate.addActionListener(e -> { calculate(); });
 	}
 	
 	private void redirectToMainMenu() {
 		ViewMain viewMain = new ViewMain();
 		viewMain.run();
 		
+		clipboardMsg.setVisible(false);
 		calculator.dispose();
+	}
+	
+	private void clearFields() {
+		springConstantField.setText("");
+		massField.setText("");
+		periodField.setText("");
+		
+		clipboardMsg.setVisible(false);
+	}
+	
+	private void copyToClipboard() {
+		Toolkit.getDefaultToolkit().getSystemClipboard()
+			.setContents(new StringSelection(periodField.getText()),null);
+		
+		clipboardMsg.setVisible(true);
 	}
 	
 	private void calculate() {
 		try {
+			clipboardMsg.setVisible(false);
+
 			PeriodController periodController = new PeriodController();
-			String result = periodController.calculate(springConstantField, massField);
 			
+			String result = periodController.calculate(springConstantField, massField);
 			periodField.setText(result);
 		} catch (NumberFormatException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira somente valores numéricos.",
-					 "Entrada inválida",JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, insira somente valores numï¿½ricos.",
+					 "Entrada invï¿½lida",JOptionPane.WARNING_MESSAGE);     
 		} catch (IllegalArgumentException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, preencha os campos corretamente.",
-					 "Entrada inválida", JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, preencha os campos corretamente.",
+					 "Entrada invï¿½lida", JOptionPane.WARNING_MESSAGE);     
 		}
 	}
 }

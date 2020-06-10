@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.lang.reflect.InvocationTargetException;
+import java.awt.Color;
 
 public class ViewMain implements View {
 
@@ -28,6 +29,7 @@ public class ViewMain implements View {
 
 	private void initialize() {
 		mainMenu = new JFrame();
+		mainMenu.getContentPane().setBackground(Color.WHITE);
 		mainMenu.setTitle("Movimento Harm�nico Simples");
 		mainMenu.setBounds(100, 100, WIDTH, HEIGHT);
 		mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
