@@ -28,36 +28,36 @@ public class ViewMain implements View {
 
 	private void initialize() {
 		mainMenu = new JFrame();
-		mainMenu.setTitle("Movimento HarmÃ´nico Simples");
+		mainMenu.setTitle("Movimento Harmônico Simples");
 		mainMenu.setBounds(100, 100, WIDTH, HEIGHT);
 		mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainMenu.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Selecione uma opÃ§Ã£o");
+		JLabel lblNewLabel = new JLabel("Selecione uma opção");
 		lblNewLabel.setBounds(150, 31, 217, 15);
 		mainMenu.getContentPane().add(lblNewLabel);
 		
-		btnForce = new JButton("CÃ¡lculo da ForÃ§a");
+		btnForce = new JButton("Cálculo da Força");
 		btnForce.setBounds(24, 83, 200, 25);
 		mainMenu.getContentPane().add(btnForce);
 		btnForce.addActionListener(e -> { createCalculatorWindow("view.ForceCalculator"); });
 		
-		btnAcceleration = new JButton("CÃ¡lculo da AceleraÃ§Ã£o");
+		btnAcceleration = new JButton("Cálculo da Aceleração");
 		btnAcceleration.setBounds(263, 83, 200, 25);
 		mainMenu.getContentPane().add(btnAcceleration);
 		btnAcceleration.addActionListener(e -> { createCalculatorWindow("view.AccelerationCalculator"); });
 		
-		btnAngularFrequency = new JButton("FrequÃªncia Angular");
+		btnAngularFrequency = new JButton("Frequência Angular");
 		btnAngularFrequency.setBounds(263, 148, 200, 25);
 		mainMenu.getContentPane().add(btnAngularFrequency);
 		btnAngularFrequency.addActionListener(e -> { createCalculatorWindow("view.AngularFrequencyCalculator"); });
 		
-		btnShmFrequency = new JButton("FrequÃªncia para MHS");
+		btnShmFrequency = new JButton("Frequência para MHS");
 		btnShmFrequency.setBounds(24, 148, 200, 25);
 		mainMenu.getContentPane().add(btnShmFrequency);
 		btnShmFrequency.addActionListener(e -> { createCalculatorWindow("view.ShmFrequencyCalculator"); });
 		
-		btnPeriod = new JButton("PerÃ­odo");
+		btnPeriod = new JButton("Período");
 		btnPeriod.setBounds(24, 221, 150, 25);
 		mainMenu.getContentPane().add(btnPeriod);
 		btnPeriod.addActionListener(e -> { createCalculatorWindow("view.PeriodCalculator"); });
