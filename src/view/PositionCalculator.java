@@ -48,7 +48,7 @@ public class PositionCalculator implements View {
 	private void initialize() {
 		calculator = new JFrame();
 		calculator.getContentPane().setBackground(Color.WHITE);
-		calculator.setTitle("Cálculo da Amplitude");
+		calculator.setTitle("Cálculo da Posição do Corpo");
 		calculator.setBounds(100, 100, WIDTH, HEIGHT);
 		calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		calculator.getContentPane().setLayout(null);
