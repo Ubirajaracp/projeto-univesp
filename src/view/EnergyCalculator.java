@@ -27,18 +27,18 @@ public class EnergyCalculator extends Calculator implements View {
 
 	private void initialize() {
 		super.initializeComponents();
-		super.calculator.setTitle("Cï¿½lculo da Energia");
+		super.calculator.setTitle("Cálculo da Energia");
 		
-		JLabel springConstantLabel = new JLabel("Valor da constante elï¿½stica da mola");
+		JLabel springConstantLabel = new JLabel("Valor da constante elástica da mola (N/m)");
 		springConstantLabel.setBounds(25, 50, 287, 15);
 		
-		JLabel amplitudeLabel = new JLabel("Valor da Amplitude");
+		JLabel amplitudeLabel = new JLabel("Valor da Amplitude (m)");
 		amplitudeLabel.setBounds(25, 100, 253, 15);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(12, 150, 497, 15);
 		
-		JLabel energyLabel = new JLabel("Energia");
+		JLabel energyLabel = new JLabel("Energia (J)");
 		energyLabel.setBounds(25, 185, 169, 15);
 		
 		springConstantField = new JTextField();
@@ -83,11 +83,9 @@ public class EnergyCalculator extends Calculator implements View {
 			String result = energyController.calculate(springConstantField, amplitudeField);
 			energyField.setText(result);
 		} catch (NumberFormatException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, insira somente valores numï¿½ricos.",
-					 "Entrada invï¿½lida",JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, super.getInvalidInputMessage(), "Erro",JOptionPane.WARNING_MESSAGE);     
 		} catch (IllegalArgumentException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, preencha os campos corretamente.",
-					 "Entrada invï¿½lida", JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, super.getEmptyInputMessage(), "Erro", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

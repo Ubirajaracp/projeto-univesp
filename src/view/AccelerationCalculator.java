@@ -27,21 +27,21 @@ public class AccelerationCalculator extends Calculator implements View {
 
 	private void initialize() {
 		super.initializeComponents();
-		super.calculator.setTitle("Cï¿½lculo da Aceleraï¿½ï¿½o");
+		super.calculator.setTitle("Cálculo da aceleração");
 
-		JLabel springConstantLabel = new JLabel("Valor da constante elï¿½stica da mola");
+		JLabel springConstantLabel = new JLabel("Valor da constante elástica da mola (N/m)");
 		springConstantLabel.setBounds(25, 50, 287, 15);
 		
-		JLabel massLabel = new JLabel("Valor da massa");
+		JLabel massLabel = new JLabel("Valor da massa (kg)");
 		massLabel.setBounds(25, 100, 253, 15);
 		
-		JLabel displacementLabel = new JLabel("Valor do deslocamento");
+		JLabel displacementLabel = new JLabel("Valor do deslocamento (m)");
 		displacementLabel.setBounds(25, 150, 229, 15);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(12, 200, 497, 15);
 		
-		JLabel accelerationLabel = new JLabel("Aceleraï¿½ï¿½o");
+		JLabel accelerationLabel = new JLabel("Aceleração (m)");
 		accelerationLabel.setBounds(25, 235, 169, 15);
 		
 		springConstantField = new JTextField();
@@ -92,11 +92,9 @@ public class AccelerationCalculator extends Calculator implements View {
 			String result = accelerationController.calculate(springConstantField, massField, displacementField);
 			accelerationField.setText(result);
 		} catch (NumberFormatException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, insira somente valores numï¿½ricos.",
-					 "Entrada invï¿½lida",JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, super.getInvalidInputMessage(), "Erro",JOptionPane.WARNING_MESSAGE);     
 		} catch (IllegalArgumentException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, preencha os campos corretamente.",
-					 "Entrada invï¿½lida", JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, super.getEmptyInputMessage(), "Erro", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

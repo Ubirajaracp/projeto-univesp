@@ -28,25 +28,25 @@ public class PositionCalculator extends Calculator implements View {
 
 	private void initialize() {
 		super.initializeComponents();
-		super.calculator.setTitle("CÃ¡lculo da PosiÃ§Ã£o do Corpo");
+		super.calculator.setTitle("Cálculo da posição do Corpo ");
 
 		
 		JLabel amplitudeLabel = new JLabel("Valor da amplitude (m)");
 		amplitudeLabel.setBounds(25, 50, 287, 15);
 		
-		JLabel angularFrequencyLabel = new JLabel("Valor da frequÃªncia angular (rad/s)");
+		JLabel angularFrequencyLabel = new JLabel("Valor da frequência angular (rad/s)");
 		angularFrequencyLabel.setBounds(25, 100, 253, 15);
 		
 		JLabel timeLabel = new JLabel("Valor do tempo (s)");
 		timeLabel.setBounds(25, 150, 229, 15);
 		
-		JLabel phaseShiftLabel = new JLabel("Valor do Ã¢ngulo de fase (rad)");
+		JLabel phaseShiftLabel = new JLabel("Valor do Ângulo de fase (rad)");
 		phaseShiftLabel.setBounds(25, 200, 229, 15);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(12, 250, 497, 15);
 		
-		JLabel positionLabel = new JLabel("PosiÃ§Ã£o (m)");
+		JLabel positionLabel = new JLabel("Posição (m)");
 		positionLabel.setBounds(25, 285, 169, 15);
 		
 		amplitudeField = new JTextField();
@@ -103,11 +103,9 @@ public class PositionCalculator extends Calculator implements View {
 			String result = positionController.calculate(amplitudeField, angularFrequencyField, timeField, phaseShiftField);
 			positionField.setText(result);
 		} catch (NumberFormatException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, insira somente valores numï¿½ricos.",
-					 "Entrada invï¿½lida",JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, super.getInvalidInputMessage(), "Erro",JOptionPane.WARNING_MESSAGE);     
 		} catch (IllegalArgumentException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, preencha os campos corretamente.",
-					 "Entrada invï¿½lida", JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, super.getEmptyInputMessage(), "Erro", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

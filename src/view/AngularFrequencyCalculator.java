@@ -27,18 +27,18 @@ public class AngularFrequencyCalculator extends Calculator implements View {
 
 	private void initialize() {
 		super.initializeComponents();
-		super.calculator.setTitle("Cï¿½lculo da frequï¿½ncia angular");
+		super.calculator.setTitle("Cálculo da frequência angular");
 		
-		JLabel springConstantLabel = new JLabel("Valor da constante elï¿½stica da mola");
+		JLabel springConstantLabel = new JLabel("Valor da constante elástica da mola (N/m)");
 		springConstantLabel.setBounds(25, 50, 287, 15);
 		
-		JLabel massLabel = new JLabel("Valor da massa");
+		JLabel massLabel = new JLabel("Valor da massa (kg)");
 		massLabel.setBounds(25, 100, 253, 15);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(12, 150, 497, 15);
 		
-		JLabel angularFrequencyLabel = new JLabel("Frequï¿½ncia Angular");
+		JLabel angularFrequencyLabel = new JLabel("Frequência Angular (rad/s)");
 		angularFrequencyLabel.setBounds(25, 185, 169, 15);
 		
 		springConstantField = new JTextField();
@@ -83,11 +83,9 @@ public class AngularFrequencyCalculator extends Calculator implements View {
 			String result = angularFrequencyController.calculate(springConstantField, massField);
 			angularFrequencyField.setText(result);
 		} catch (NumberFormatException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, insira somente valores numï¿½ricos.",
-					 "Entrada invï¿½lida",JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, super.getInvalidInputMessage(), "Erro",JOptionPane.WARNING_MESSAGE);     
 		} catch (IllegalArgumentException e) {
-			 JOptionPane.showMessageDialog(null, "Entrada invï¿½lida. Por favor, preencha os campos corretamente.",
-					 "Entrada invï¿½lida", JOptionPane.WARNING_MESSAGE);     
+			 JOptionPane.showMessageDialog(null, super.getEmptyInputMessage(), "Erro", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

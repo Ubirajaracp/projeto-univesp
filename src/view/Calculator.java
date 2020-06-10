@@ -35,7 +35,7 @@ public abstract class Calculator {
 	}
 	
 	protected void initializeLabels() {
-		clipboardMsg = new JLabel("Copiado para a Ã¡rea de transferÃªncia");
+		clipboardMsg = new JLabel("Copiado para a área de transferência");
 		clipboardMsg.setFont(new Font("Dialog", Font.ITALIC, 12));
 		clipboardMsg.setBackground(UIManager.getColor("Button.background"));
 		clipboardMsg.setBounds(145, HEIGHT-100, 236, 15);
@@ -95,5 +95,13 @@ public abstract class Calculator {
 	
 	protected void setHeight(int y) {
 		this.HEIGHT = y;
+	}
+	
+	protected String getInvalidInputMessage() {
+		return "Entrada inválida. Por favor, insira somente valores numéricos.";
+	}
+	
+	protected String getEmptyInputMessage() {
+		return "Entrada inválida. Por favor, preencha os campos corretamente.";
 	}
 }
